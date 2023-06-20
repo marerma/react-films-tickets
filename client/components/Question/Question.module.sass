@@ -1,0 +1,32 @@
+@import '../../src/app/styles/_mixin'
+
+@mixin icon 
+  flex-shrink: 0
+  background-size: cover
+  width: 2rem
+  height: 2rem
+
+.question
+  width: 100%
+  display: flex
+  flex-direction: row
+  align-content: center
+  justify-content: space-between
+  @include cardWrapper
+  gap: 1rem
+  &__title
+    font-size: 1.5rem
+    font-weight: 600
+    line-height: 2rem
+  &__answer
+    font-weight: 400
+    font-size: 1rem
+    line-height: 1.5rem
+    padding-top: 1rem
+  &__icon
+    background: url('/icons/faq_icon_closed.png') no-repeat center
+    @include icon
+    &_open
+      background: url('/icons/faq_icon_open.png') no-repeat center
+      @include icon
+    

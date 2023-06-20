@@ -1,0 +1,23 @@
+@import 'src/app/styles/_mixin'
+
+.film
+  &__wrapper
+    @include cardWrapper
+    display: flex
+    gap: 1.5rem
+    font-size: 1.25rem
+    line-height: 1em
+    font-weight: 600
+    &:hover
+      cursor: pointer
+  &__poster
+    border-radius: 0.5rem
+  &__info
+    flex-grow: 2
+    h4 
+      font-size: 1rem
+      line-height: 1rem
+      font-style: italic
+      font-weight: 400
+      padding-top: 0.5rem
+

@@ -1,0 +1,63 @@
+@import '../../src/app/styles/_mixin'
+
+.filters
+  &__wrapper
+    @include cardWrapper
+    flex-basis: 25%
+  &__title
+    font-weight: 600
+    font-size: 1rem
+    line-height: 1.25rem
+    padding-bottom: 20px
+    position: sticky
+    top: 0px
+
+.input
+  display: flex
+  flex-direction: column
+  width: 100%
+  gap: 0.25rem
+  position: sticky
+  top: 0px
+  &__searchLabel
+    font-weight: 400
+    font-size: 0.875rem
+    line-height: 1.25rem
+  &__searchInput
+    background: #FFFFFF
+    border: 1px solid var(--border)
+    border-radius: 0.5rem
+    padding: 10px 16px
+    &::placeholder
+      color: var(--text-tertiary)
+      font-size: 0.875rem
+
+@mixin icon 
+  flex-shrink: 0
+  background-size: cover
+  width: 1.25rem
+  height: 1.252rem
+
+.select
+  
+  &__searchLabel
+    font-weight: 400
+    font-size: 0.875rem
+    line-height: 1.25rem
+  &__placeholder
+    background: #FFFFFF
+    border: 1px solid var(--border)
+    border-radius: 0.5rem
+    padding: 10px 16px
+    color: var(--text-tertiary)
+    font-size: 0.875rem
+    position: relative
+  &__icon
+    position: absolute
+    top: 10px
+    right: 10px
+    background: url('/icons/faq_icon_closed.png') no-repeat center
+    @include icon
+    &_open
+      background: url('/icons/faq_icon_open.png') no-repeat center
+      @include icon

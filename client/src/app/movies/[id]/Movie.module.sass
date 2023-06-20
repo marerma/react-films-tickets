@@ -1,0 +1,35 @@
+@import 'src/app/styles/_mixin'
+
+.film
+  &__wrapper
+    display: flex
+    flex-direction: row
+    gap: 2rem
+    @include cardWrapper
+  &__infoContainer
+    padding: 1.5rem
+    position: relative
+  &__poster
+    border-radius: 0.5rem
+  &__info, &__page
+    display: flex
+    flex-direction: column
+    gap: 1rem
+  &__title
+    font-weight: 600
+    font-size: 2rem
+    line-height: 2rem
+  &__subtitle_bold 
+    font-weight: 600
+    font-size: 1.25rem
+    line-height: 2rem
+  &__description
+    font-weight: 400
+  &__text
+    font-size: 1rem
+    font-weight: 400
+    line-height: 1.5rem
+  &__counter
+    position: absolute
+    top: 1.5rem
+    right: 1.5rem
