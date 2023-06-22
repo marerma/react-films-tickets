@@ -1,13 +1,13 @@
-"use client"
-import { useState } from "react";
-import styles from './Question.module.sass';
+'use client'
+import { useState } from 'react'
+import styles from './Question.module.sass'
 
-export const Question = ({question, description}: QuestionData) => {
-  const [isOpen, setIsOpen] = useState(true);
+const Question = ({ question, description }: QuestionData) => {
+  const [isOpen, setIsOpen] = useState(true)
 
   const openTextHandler = () => {
     setIsOpen(!isOpen)
-  };
+  }
 
   return (
     <div className={styles.question}>
@@ -15,7 +15,12 @@ export const Question = ({question, description}: QuestionData) => {
         <p className={styles.question__title}>{question}</p>
         {isOpen && <p className={styles.question__answer}>{description}</p>}
       </div>
-      <div className={isOpen ? styles.question__icon : styles.question__icon_open} onClick={openTextHandler}/>
+      <div
+        className={isOpen ? styles.question__icon : styles.question__icon_open}
+        onClick={openTextHandler}
+      />
     </div>
   )
 }
+
+export default Question
