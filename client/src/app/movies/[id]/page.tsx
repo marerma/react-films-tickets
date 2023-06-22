@@ -1,17 +1,11 @@
-import Image from 'next/image';
-import styles from './Movie.module.sass';
-import { TicketsCounter } from 'components/TicketsCounter/TicketsCounter';
-import { api } from 'api';
-import { ReviewsList } from 'components/Reviews/ReviewsList';
-import { FilmCard } from 'components/FilmCard/FilmCard';
+import { FilmCard } from 'components'
+import { ReviewsList } from 'components'
+import styles from './Movie.module.sass'
 
-
-export default async function Movie({ params }: { params: { id: string } }) {
-  const film = await api.getOneFilm(params.id);
-
+export default function Movie({ params }: { params: { id: string } }) {
   return (
     <div className={styles.film__page}>
-      <FilmCard {...film}/>
+      <FilmCard id={params.id} />
       <ReviewsList id={params.id} />
     </div>
   )

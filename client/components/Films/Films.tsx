@@ -1,13 +1,19 @@
-import { api } from 'api';
-import { FilmPreview } from 'components/FilmPreview/FilmPreview';
-import styles from './Films.module.sass';
+import { FilmPreview } from 'components'
+import styles from './Films.module.sass'
 
-export const Films = async () => {
-  const allFilms = await api.getAllFilms();
-  
+type FilmsProps = {
+  allFilms: Movie[]
+  isRemovable: boolean
+}
+const Films = ({ allFilms, isRemovable }: FilmsProps) => {
   return (
     <div className={styles.films__wrapper}>
-      {allFilms.length > 0 && allFilms.map((film) => <FilmPreview key={film.id} {...film}/>)}
+      {allFilms.length > 0 &&
+        allFilms.map((film) => (
+          <FilmPreview key={film.id} {...film} isRemovable={isRemovable} />
+        ))}
     </div>
   )
 }
+
+export default Films

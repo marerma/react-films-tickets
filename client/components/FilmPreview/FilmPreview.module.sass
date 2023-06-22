@@ -2,14 +2,13 @@
 
 .film
   &__wrapper
+    position: relative
     @include cardWrapper
     display: flex
     gap: 1.5rem
     font-size: 1.25rem
     line-height: 1em
     font-weight: 600
-    &:hover
-      cursor: pointer
   &__poster
     border-radius: 0.5rem
   &__info
@@ -20,4 +19,17 @@
       font-style: italic
       font-weight: 400
       padding-top: 0.5rem
+    h3:hover, h4:hover
+      cursor: pointer
+  &__cart
+    position: relative
+    display: flex
+    gap: 1.5rem
+  &__closeIcon
+    width: 20px
+    height: 20px
+    color: var(--dark-grey)
+    &:hover
+      cursor: pointer
+      color: var(--orange)
 

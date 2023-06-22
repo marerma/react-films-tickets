@@ -1,16 +1,20 @@
-import { api } from 'api';
-import { Review } from 'components/Review/Review';
-import styles from './Reviews.module.sass';
+'use client'
+import { Review } from 'components'
+import { useGetFilmReviewsQuery } from 'store/reducer/FilmsApiSlice'
+import styles from './Reviews.module.sass'
 
 type ReviewListProps = {
-  id: string;
+  id: string
 }
-export const ReviewsList = async ({id} : ReviewListProps) => {
-  const allFilmReview = await api.getFilmReviews(id);
-  
+const ReviewsList = ({ id }: ReviewListProps) => {
+  const { data: allFilmReview } = useGetFilmReviewsQuery(id)
+
   return (
     <div className={styles.reviews__wrapper}>
-      {allFilmReview.length > 0 && allFilmReview.map((review) => <Review key={review.id} {...review}/>)}
+      {allFilmReview &&
+        allFilmReview.map((review) => <Review key={review.id} {...review} />)}
     </div>
   )
 }
+
+export default ReviewsList
