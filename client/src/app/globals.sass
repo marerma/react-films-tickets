@@ -1,3 +1,18 @@
+@font-face
+  font-family: "SF Pro"
+  src: url("/fonts/SFProText-Bold.ttf") 
+  format: 'truetype'
+  weight: '600'
+  style: 'bold'
+
+
+@font-face
+  font-family: "SF Pro"
+  src: url("/fonts/SFProText-Regular.ttf") 
+  format: 'truetype'
+  weight: '400'
+  style: 'regular'
+
 :root 
   --primary-font: var(--roboto-mono)
   --main-size: 16px
@@ -7,8 +22,10 @@
   --text-tertiary: #999FA6
   --orange: #FF5500
   --orange-disabled: #FFA375
+  --orange-hover: #E94E00
   --border: #E1E3E6
-
+  --header-height: 86px
+  --font-sf:  "SF Pro"
 
 
 * 
@@ -25,7 +42,11 @@ body
 
 
 body 
+  height: 100vh
+  display: flex
+  flex-direction: column
   background-color: var(--primary-grey)
+
 
 
 a 
@@ -34,10 +55,11 @@ a
 
 
 .main 
+  margin-top: var(--header-height)
   width: 100%
   display: flex
   flex-direction: column
   justify-content: space-between
   align-items: center
   padding: 24px 32px
-  min-height: 100vh
+  flex-grow: 2
