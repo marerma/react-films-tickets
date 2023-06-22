@@ -1,0 +1,50 @@
+@import 'src/app/styles/_mixin'
+
+@mixin icon 
+  flex-shrink: 0
+  background: url('/icons/dropdown_icon.png') no-repeat center
+  background-size: cover
+  width: 1.25rem
+  height: 1.252rem
+  position: absolute
+  top: 10px
+  right: 10px
+
+.select
+  &:hover
+    cursor: pointer
+  &__searchLabel
+    font-weight: 400
+    font-size: 0.875rem
+    line-height: 1.25rem
+  &__placeholder, &__placeholder_open
+    background: #FFFFFF
+    border: 1px solid var(--border)
+    border-radius: 0.5rem
+    padding: 10px 16px
+    color: var(--text-tertiary)
+    font-size: 0.875rem
+    position: relative
+  &__placeholder_open
+    border: 1px solid var(--orange)
+  &__list
+    @include cardWrapper
+    padding: 0.5rem
+    display: flex
+    flex-direction: column
+    gap: 1rem
+    list-style: none
+  &__listItem
+    font-weight: 400
+    font-size: 0.875rem
+    line-height: 1.25rem
+    &:hover
+      cursor: pointer
+      color: var(--orange)
+  &__icon
+    @include icon
+    transform: rotate(180deg)
+    &_open
+      @include icon
+  &__optionsList
+    width: 300px 
