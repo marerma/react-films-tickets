@@ -1,5 +1,16 @@
-import styles from './Cart.module.sass';
+import { useAppSelector } from 'store/hooks'
+import styles from './Cart.module.sass'
+import { TotalAmount } from 'store/selector/Selectors'
 
-export const Cart = () => {
-  return <div className={styles.cart}></div>
+const Cart = () => {
+  const totalAmount = useAppSelector(TotalAmount)
+
+  return (
+    <div className={styles.cart}>
+      <div className={styles.cart__amount}>{totalAmount}</div>
+      <div className={styles.cart__icon} />
+    </div>
+  )
 }
+
+export default Cart

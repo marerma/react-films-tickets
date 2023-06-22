@@ -1,5 +1,20 @@
 .cart
-  background: url('/basket.svg') no-repeat center
-  width: 32px
-  height: 32px
-  color: white
+  display: flex
+  align-items: center
+  gap: 0.5rem
+  &__amount
+    color: white
+    background-color: var(--orange)
+    width: 1.75rem
+    height: 1.75rem
+    border-radius: 0.5rem
+    padding: 0.25rem
+    text-align: center
+    font-weight: 600
+    font-size: 0.875rem 
+    line-height: 1.25rem
+  &__icon
+    background: url('/basket.svg') no-repeat center
+    width: 32px
+    height: 32px
+    color: white
