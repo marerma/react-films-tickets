@@ -6,7 +6,7 @@ import { useMemo } from 'react'
 import { useGetAllFilmsQuery } from 'store/reducer/FilmsApiSlice'
 import { Films } from 'components'
 import styles from './Cart.module.sass'
-import { CART_RANGE } from 'shared/constants'
+import { CART_RANGE } from 'shared/app-congif'
 
 const CartContent = () => {
   const filmsInCart = useAppSelector(FilmsInCartSelector)

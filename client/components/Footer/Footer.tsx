@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ROUTES } from 'shared/constants'
+import { ROUTES } from 'shared/app-congif'
 import styles from './Footer.module.sass'
 
 const Footer = () => {

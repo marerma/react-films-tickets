@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { CART_RANGE } from 'shared/constants'
+import { CART_RANGE } from 'shared/app-congif'
 
 export interface CartState {
   filmsInCart: { id: string; amount: number }[]

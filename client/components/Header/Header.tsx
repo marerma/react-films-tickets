@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ROUTES } from 'shared/constants'
+import { ROUTES } from 'shared/app-congif'
 import { Cart } from 'components'
 import styles from './Header.module.sass'
 

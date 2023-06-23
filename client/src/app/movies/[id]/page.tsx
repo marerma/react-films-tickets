@@ -1,7 +1,7 @@
 import { Metadata, ResolvingMetadata } from 'next'
 import { FilmCard, ReviewsList } from 'components'
 import styles from './Movie.module.sass'
-import { BASE_URL } from 'shared/constants'
+import { BASE_URL } from 'shared/app-congif'
 
 export const metadata: Metadata = {
   title: 'Movies',
