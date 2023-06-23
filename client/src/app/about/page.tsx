@@ -1,4 +1,10 @@
+import { Metadata } from 'next'
 import styles from './About.module.sass'
+
+export const metadata: Metadata = {
+  title: 'About',
+  description: 'About the tickets purchasing service',
+}
 
 export default function About() {
   return (

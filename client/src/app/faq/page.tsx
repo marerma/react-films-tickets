@@ -1,7 +1,13 @@
-import { FAQ_CONTENT } from './mock/faq_content'
+import { Metadata } from 'next'
 import { Question } from 'components'
+import { FAQ_CONTENT } from './mock/faq_content'
 
 import styles from './FAQ.module.sass'
+
+export const metadata: Metadata = {
+  title: 'FAQ',
+  description: 'Frequently asked questions about the service',
+}
 
 export default function FAQ() {
   return (
