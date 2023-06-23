@@ -1,7 +1,7 @@
-const FILTER_TYPES = {
-  genre: 'genre',
-  title: 'title',
-  cinema: 'cinema',
+const enum FILTER_TYPES {
+  genre = 'genre',
+  title = 'title',
+  cinema = 'cinema',
 }
 
 const DROP_GENRES = {
