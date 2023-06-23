@@ -20,10 +20,13 @@ const filtersSlice = createSlice({
     addFilter: (state, action: PayloadAction<{ type: string, value: string }>) => {
       const {type, value} = action.payload;
       return type in state? {...state, [type]: value} : state;
+    },
+    resetFilters: (state) => {
+      return initialState
     }
   },
 });
 
-export const { addFilter } = filtersSlice.actions;
+export const { addFilter, resetFilters } = filtersSlice.actions;
 
 export default filtersSlice.reducer;
