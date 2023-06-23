@@ -6,7 +6,6 @@ import React, {
   useContext,
   useEffect,
   useMemo,
-  useRef,
   useState,
 } from 'react'
 import { createPortal } from 'react-dom'
@@ -17,11 +16,12 @@ import type {
   DropDownMenuList,
   DropDownPortalProps,
 } from './types'
-import styles from './DropDown.module.sass'
-import { useAppDispatch } from 'store/hooks'
-import { addFilter } from 'store/reducer/FiltersSlice'
-import { FILTER_TYPES } from 'components/Filters/mock/Filters'
 import { useLazyGetCinemaFilmsQuery } from 'store/reducer/FilmsApiSlice'
+import { addFilter, resetFilters } from 'store/reducer/FiltersSlice'
+import { useAppDispatch } from 'store/hooks'
+import { FILTER_TYPES } from 'components/Filters/mock/Filters'
+import { useDropDownGroup } from 'hooks'
+import styles from './DropDown.module.sass'
 
 const DropDownContext = createContext<DropDownContext>({
   openedGroup: '',
@@ -49,64 +49,46 @@ DropDownMenu.Group = function DropDownMenuGroup({
   filterType,
 }: DropDownMenuGroupProps) {
   const { openedGroup, openGroup } = useContext(DropDownContext)
-  const [selected, setSelected] = useState('')
-  const inputRef = useRef<HTMLDivElement | null>(null)
-  const [offset, setOffset] = useState<DOMRect>()
-  const [isOpen, setIsOpen] = useState(false)
+  const {groupIsOpen, setGroupIsOpen, offset, inputRef, selected, handleSelectedItem} = useDropDownGroup();
   const dispatch = useAppDispatch()
   const [getCinemaFilms] = useLazyGetCinemaFilmsQuery()
+  
 
-  const handleItemClick = (value: string, id: string) => {
-    setSelected(value)
+  const handleItemClick = useCallback((value: string, id: string) => {
+    handleSelectedItem(value)
     if (filterType === FILTER_TYPES.cinema) {
       getCinemaFilms(id)
     }
     dispatch(addFilter({ type: filterType, value: id }))
-  }
+  }, [dispatch, filterType, getCinemaFilms, handleSelectedItem])
 
+ 
   useEffect(() => {
-    const offsetData = inputRef.current?.getBoundingClientRect()
-    setOffset(offsetData)
-  }, [])
+    setGroupIsOpen(openedGroup === title)
+  }, [openedGroup, setGroupIsOpen, title])
 
+  
   useEffect(() => {
-    setIsOpen(openedGroup === title)
-  }, [openedGroup, title])
-
-  useEffect(() => {
-    const handleCloseOnOutside = (e: MouseEvent) => {
-      const { target } = e
-      if (
-        target instanceof Element &&
-        inputRef.current &&
-        !inputRef.current.contains(target)
-      ) {
-        setIsOpen(false)
-      }
-    }
-
-    document.addEventListener('click', handleCloseOnOutside)
-
     return () => {
-      document.removeEventListener('click', handleCloseOnOutside)
+      dispatch(resetFilters())
     }
-  }, [])
+  }, [dispatch])
 
   return (
     <div className={styles.select} onClick={() => openGroup(title)}>
       <p className={styles.select__searchLabel}>{title}</p>
       <div
         className={
-          isOpen ? styles.select__placeholder_open : styles.select__placeholder
+          groupIsOpen ? styles.select__placeholder_open : styles.select__placeholder
         }
         ref={inputRef}
       >
         {selected ? selected : placeholder}
         <span
-          className={isOpen ? styles.select__icon_open : styles.select__icon}
+          className={groupIsOpen ? styles.select__icon_open : styles.select__icon}
         />
       </div>
-      {isOpen && (
+      {groupIsOpen && (
         <DropDownPortal offset={offset}>
           <DropDownMenu.List items={items} handleItemClick={handleItemClick} />
         </DropDownPortal>
@@ -121,6 +103,15 @@ DropDownMenu.List = function DropDownList({
 }: DropDownMenuList) {
   return (
     <ul className={styles.select__list}>
+      <li
+          key ='empty'
+          value=''
+          id=''
+          className={styles.select__listItem}
+          onClick={() => handleItemClick('', '')}
+        >
+          Не выбрано
+        </li>
       {items.map((opt) => (
         <li
           key={opt.id}
