@@ -8,23 +8,23 @@ export const metadata: Metadata = {
   description: 'Movies to watch in cinemas',
 }
 
- 
 type Props = {
   params: { id: string }
 }
- 
-export async function generateMetadata(
-  { params }: Props,
-): Promise<Pick<Movie, 'title'| 'description'>> {
+
+export async function generateMetadata({
+  params,
+}: Props): Promise<Pick<Movie, 'title' | 'description'>> {
   const id = params.id
-  const film = await fetch(`${BASE_URL}/movie?movieId=${id}`).then((res) => res.json()) as Movie;
+  const film = (await fetch(`${BASE_URL}/movie?movieId=${id}`).then((res) =>
+    res.json()
+  )) as Movie
 
   return {
     title: film.title,
-    description: film.description
+    description: film.description,
   }
 }
- 
 
 export default function Movie({ params }: { params: { id: string } }) {
   return (

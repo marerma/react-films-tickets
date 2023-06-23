@@ -1,24 +1,23 @@
-const GENRES: {[key: string]: {ru: string, en: string}} = {
+const GENRES: { [key: string]: { ru: string; en: string } } = {
   horror: {
     ru: 'Ужасы',
-    en: 'horror'
+    en: 'horror',
   },
   action: {
     ru: 'Боевик',
-    en: 'action'
+    en: 'action',
   },
   comedy: {
     ru: 'Комедия',
-    en: ''
+    en: '',
   },
   fantasy: {
     ru: 'Фэнтези',
-    en: 'fantasy'
+    en: 'fantasy',
   },
 }
 
-
 const translateGenre = (genre: string) => {
-  return GENRES[genre].ru;
+  return GENRES[genre].ru
 }
-export { translateGenre };
+export { translateGenre }

@@ -1,12 +1,12 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { BASE_URL } from "shared/constants";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { BASE_URL } from 'shared/constants'
 
 export const filmsApi = createApi({
-  reducerPath: "filmsApi",
+  reducerPath: 'filmsApi',
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
     getAllFilms: builder.query<Movie[], void>({
-      query: () => ({ url: "/movies" }),
+      query: () => ({ url: '/movies' }),
     }),
     getOneFilm: builder.query<Movie, string>({
       query: (id) => `/movie?movieId=${id}`,
@@ -15,16 +15,16 @@ export const filmsApi = createApi({
       query: (id) => `/movies?cinemaId=${id}`,
     }),
     getAllCinemas: builder.query<Cinema[], void>({
-      query: () => "/cinemas",
+      query: () => '/cinemas',
     }),
     getReviews: builder.query<Review[], void>({
-      query: () => "/reviews",
+      query: () => '/reviews',
     }),
     getFilmReviews: builder.query<Review[], string>({
       query: (id) => `/reviews?movieId=${id}`,
     }),
   }),
-});
+})
 
 export const {
   useGetAllFilmsQuery,
@@ -32,5 +32,5 @@ export const {
   useGetAllCinemasQuery,
   useGetFilmReviewsQuery,
   useGetReviewsQuery,
-  useLazyGetCinemaFilmsQuery
-} = filmsApi;
+  useLazyGetCinemaFilmsQuery,
+} = filmsApi

@@ -10,24 +10,31 @@ type FilmsProps = {
 }
 
 const Films = () => {
-  const {filteredFilms, isLoading, isError, filmsInCinemaFetching, filmsInCinemaLoading} = useFilteredFilms();
-  
+  const {
+    filteredFilms,
+    isLoading,
+    isError,
+    filmsInCinemaFetching,
+    filmsInCinemaLoading,
+  } = useFilteredFilms()
+
   return (
-      <div className={styles.films__wrapper}>
-        {isError && <p>Something bad happened...</p>}
-        {(isLoading || filmsInCinemaFetching || filmsInCinemaLoading) && <Loader />}
-        {filteredFilms && !(filmsInCinemaFetching || filmsInCinemaLoading) &&(
-          <Films.List allFilms={filteredFilms} isRemovable={false} />
-        )}
-        {filteredFilms && !filteredFilms.length && (
-          <p>Фильмы по заданным фильтрам не найдены.</p>
-        )}
-      </div>
+    <div className={styles.films__wrapper}>
+      {isError && <p>Something bad happened...</p>}
+      {(isLoading || filmsInCinemaFetching || filmsInCinemaLoading) && (
+        <Loader />
+      )}
+      {filteredFilms && !(filmsInCinemaFetching || filmsInCinemaLoading) && (
+        <Films.List allFilms={filteredFilms} isRemovable={false} />
+      )}
+      {filteredFilms && !filteredFilms.length && (
+        <p>Фильмы по заданным фильтрам не найдены.</p>
+      )}
+    </div>
   )
 }
 
-
-Films.List = function FilmsList ({ allFilms, isRemovable }: FilmsProps) {
+Films.List = function FilmsList({ allFilms, isRemovable }: FilmsProps) {
   return (
     <div className={styles.films__list}>
       {allFilms.length > 0 &&

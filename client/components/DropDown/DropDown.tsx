@@ -49,25 +49,32 @@ DropDownMenu.Group = function DropDownMenuGroup({
   filterType,
 }: DropDownMenuGroupProps) {
   const { openedGroup, openGroup } = useContext(DropDownContext)
-  const {groupIsOpen, setGroupIsOpen, offset, inputRef, selected, handleSelectedItem} = useDropDownGroup();
+  const {
+    groupIsOpen,
+    setGroupIsOpen,
+    offset,
+    inputRef,
+    selected,
+    handleSelectedItem,
+  } = useDropDownGroup()
   const dispatch = useAppDispatch()
   const [getCinemaFilms] = useLazyGetCinemaFilmsQuery()
-  
 
-  const handleItemClick = useCallback((value: string, id: string) => {
-    handleSelectedItem(value)
-    if (filterType === FILTER_TYPES.cinema) {
-      getCinemaFilms(id)
-    }
-    dispatch(addFilter({ type: filterType, value: id }))
-  }, [dispatch, filterType, getCinemaFilms, handleSelectedItem])
+  const handleItemClick = useCallback(
+    (value: string, id: string) => {
+      handleSelectedItem(value)
+      if (filterType === FILTER_TYPES.cinema) {
+        getCinemaFilms(id)
+      }
+      dispatch(addFilter({ type: filterType, value: id }))
+    },
+    [dispatch, filterType, getCinemaFilms, handleSelectedItem]
+  )
 
- 
   useEffect(() => {
     setGroupIsOpen(openedGroup === title)
   }, [openedGroup, setGroupIsOpen, title])
 
-  
   useEffect(() => {
     return () => {
       dispatch(resetFilters())
@@ -79,13 +86,17 @@ DropDownMenu.Group = function DropDownMenuGroup({
       <p className={styles.select__searchLabel}>{title}</p>
       <div
         className={
-          groupIsOpen ? styles.select__placeholder_open : styles.select__placeholder
+          groupIsOpen
+            ? styles.select__placeholder_open
+            : styles.select__placeholder
         }
         ref={inputRef}
       >
         {selected ? selected : placeholder}
         <span
-          className={groupIsOpen ? styles.select__icon_open : styles.select__icon}
+          className={
+            groupIsOpen ? styles.select__icon_open : styles.select__icon
+          }
         />
       </div>
       {groupIsOpen && (
@@ -104,14 +115,14 @@ DropDownMenu.List = function DropDownList({
   return (
     <ul className={styles.select__list}>
       <li
-          key ='empty'
-          value=''
-          id=''
-          className={styles.select__listItem}
-          onClick={() => handleItemClick('', '')}
-        >
-          Не выбрано
-        </li>
+        key="empty"
+        value=""
+        id=""
+        className={styles.select__listItem}
+        onClick={() => handleItemClick('', '')}
+      >
+        Не выбрано
+      </li>
       {items.map((opt) => (
         <li
           key={opt.id}

@@ -1,32 +1,35 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
+import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface FilterState {
-  title: string;
-  genre: string;
-  cinema: string;
+  title: string
+  genre: string
+  cinema: string
 }
 
 const initialState: FilterState = {
   title: '',
   genre: '',
   cinema: '',
-};
+}
 
 const filtersSlice = createSlice({
-  name: "filters",
+  name: 'filters',
   initialState,
   reducers: {
-    addFilter: (state, action: PayloadAction<{ type: string, value: string }>) => {
-      const {type, value} = action.payload;
-      return type in state? {...state, [type]: value} : state;
+    addFilter: (
+      state,
+      action: PayloadAction<{ type: string; value: string }>
+    ) => {
+      const { type, value } = action.payload
+      return type in state ? { ...state, [type]: value } : state
     },
     resetFilters: (state) => {
       return initialState
-    }
+    },
   },
-});
+})
 
-export const { addFilter, resetFilters } = filtersSlice.actions;
+export const { addFilter, resetFilters } = filtersSlice.actions
 
-export default filtersSlice.reducer;
+export default filtersSlice.reducer

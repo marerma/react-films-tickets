@@ -14,16 +14,18 @@ const Search = ({ filterType }: SearchProps) => {
 
   const handleSearchDebounced = useMemo(
     () =>
-      debounce((event: React.ChangeEvent<HTMLInputElement>, searchValue: string) => {
-        dispatch(addFilter({ type: filterType, value: searchValue }))
-      }),
+      debounce(
+        (event: React.ChangeEvent<HTMLInputElement>, searchValue: string) => {
+          dispatch(addFilter({ type: filterType, value: searchValue }))
+        }
+      ),
     [dispatch, filterType]
-  );
-  
+  )
+
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setSearchValue(value);
-    handleSearchDebounced(e, value);
+    const { value } = e.target
+    setSearchValue(value)
+    handleSearchDebounced(e, value)
   }
 
   useEffect(() => {
@@ -31,7 +33,7 @@ const Search = ({ filterType }: SearchProps) => {
       dispatch(resetFilters())
     }
   }, [dispatch])
-  
+
   return (
     <div className={styles.input}>
       <label htmlFor="titleSearch" className={styles.input__searchLabel}>
@@ -49,4 +51,4 @@ const Search = ({ filterType }: SearchProps) => {
   )
 }
 
-export default Search;
+export default Search

@@ -7,7 +7,6 @@ export const metadata: Metadata = {
   description: 'tickets purchasing service',
 }
 
-
 export default function Home() {
   return (
     <div className={styles.home__wrapper}>
