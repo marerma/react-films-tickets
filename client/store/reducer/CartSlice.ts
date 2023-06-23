@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { CART_RANGE } from "shared/constants";
 
 export interface CartState {
   filmsInCart: { id: string; amount: number }[];
@@ -9,10 +10,6 @@ const initialState: CartState = {
   filmsInCart: [],
 };
 
-const AMOUNT = {
-  max: 30,
-  min: 0,
-};
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -23,8 +20,8 @@ export const cartSlice = createSlice({
       );
       if (filmInCart) {
         filmInCart.amount =
-          filmInCart.amount === AMOUNT.max
-            ? AMOUNT.max
+          filmInCart.amount === CART_RANGE.max
+            ? CART_RANGE.max
             : (filmInCart.amount += 1);
       } else {
         state.filmsInCart.push({ id: action.payload.id, amount: 1 });

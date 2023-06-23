@@ -3,12 +3,11 @@ import {
   useGetAllCinemasQuery,
   useGetAllFilmsQuery,
 } from 'store/reducer/FilmsApiSlice'
-import styles from './Filters.module.sass'
-import { Search } from './SearchFilm'
 import { getCinemaList, getGenresList } from 'shared/utils/getFilteredData'
 import { useMemo } from 'react'
-import { DropDownMenu } from 'components'
-import { DROP_GENRES, DROP_CINEMAS } from './mock/Filters'
+import { DropDownMenu,Search } from 'components'
+import { DROP_GENRES, DROP_CINEMAS, FILTER_TYPES } from './mock/Filters'
+import styles from './Filters.module.sass'
 
 const Filters = () => {
   const { data: allFilms } = useGetAllFilmsQuery()
@@ -31,8 +30,7 @@ const Filters = () => {
   return (
     <section className={styles.filters__wrapper}>
       <h3 className={styles.filters__title}>Фильтр поиска</h3>
-      <Search filterType="title" />
-      {
+      <Search filterType={FILTER_TYPES.title}/>
         <DropDownMenu>
           <DropDownMenu.Group
             filterType={DROP_GENRES.filterType}
@@ -47,7 +45,6 @@ const Filters = () => {
             placeholder={DROP_CINEMAS.placeholder}
           />
         </DropDownMenu>
-      }
     </section>
   )
 }
