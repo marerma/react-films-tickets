@@ -8,16 +8,18 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "npx prettier -w --ext ts,tsx ./src/ ./components --config ./.prettier.json  ",
+    "format": "npx prettier -w --ext ts,tsx ./src/ ./components ./shared ./store --config ./.prettier.json  ",
     "ts:check": "tsc"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "@types/lodash.debounce": "^4.0.7",
     "@types/node": "20.3.1",
     "@types/react": "18.2.13",
     "@types/react-dom": "18.2.6",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.6",
+    "lodash.debounce": "^4.0.8",
     "next": "13.4.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -25,6 +27,7 @@
     "typescript": "5.1.3"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.195",
     "eslint-config-prettier": "^8.8.0",
     "sass": "^1.63.4"
   }
