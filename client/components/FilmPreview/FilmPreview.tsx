@@ -7,7 +7,8 @@ import { translateGenre } from 'shared/utils/Localization'
 import { TicketsCounter, Modal, Popup } from 'components'
 import styles from './FilmPreview.module.sass'
 
-type FilmPreviewProps = Pick<Movie, 'title' | 'posterUrl' | 'genre' | 'id'> & isRemovable
+type FilmPreviewProps = Pick<Movie, 'title' | 'posterUrl' | 'genre' | 'id'> &
+  isRemovable
 type isRemovable = {
   isRemovable: boolean
 }
@@ -17,13 +18,12 @@ const FilmPreview = ({
   posterUrl,
   genre,
   id,
-  isRemovable
+  isRemovable,
 }: FilmPreviewProps) => {
+  const [showModal, setShowModal] = useState(false)
+  const [isRemovableCart] = useState(isRemovable)
 
-  const [showModal, setShowModal] = useState(false);
-  const [isRemovableCart] = useState(isRemovable);
-
-    return (
+  return (
     <div className={styles.film__wrapper}>
       <div className={styles.film__poster}>
         <Image
@@ -36,11 +36,18 @@ const FilmPreview = ({
       <div className={styles.film__info}>
         <h3>
           <Link href={`/movies/${id}`}> {title} </Link>
-          </h3>
+        </h3>
         <h4>{translateGenre(genre)}</h4>
       </div>
       <div className={styles.film__cart}>
-        {isRemovableCart ? <TicketsCounter id={id} handleRemoveModal={() => setShowModal(true)}/> : <TicketsCounter id={id} />}
+        {isRemovableCart ? (
+          <TicketsCounter
+            id={id}
+            handleRemoveModal={() => setShowModal(true)}
+          />
+        ) : (
+          <TicketsCounter id={id} />
+        )}
         {isRemovableCart && (
           <span
             className={styles.film__closeIcon}
@@ -68,4 +75,4 @@ const FilmPreview = ({
   )
 }
 
-export default FilmPreview;
+export default FilmPreview

@@ -4,7 +4,6 @@ import { FilmsList, Loader } from 'components'
 import { useFilteredFilms } from 'hooks'
 import styles from './Films.module.sass'
 
-
 const Films = () => {
   const {
     filteredFilms,
@@ -30,4 +29,4 @@ const Films = () => {
   )
 }
 
-export default Films;
+export default Films

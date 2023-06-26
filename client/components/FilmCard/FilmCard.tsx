@@ -31,7 +31,7 @@ const FilmCard = (props: FilmCardProps) => {
             src={posterUrl}
             alt={`poster of ${title}`}
             fill={true}
-            sizes='400px'
+            sizes="400px"
             priority
           />
         </div>

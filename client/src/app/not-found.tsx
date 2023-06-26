@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link'
 import styles from './page.module.sass'
 
 export default function NotFound() {
@@ -8,9 +8,11 @@ export default function NotFound() {
         <h1>404 - Page Not Found</h1>
         <p>Sorry, there is nothing to see here</p>
         <div>
-          <Link href='/' className={styles.error__link}>Return to the Homepage</Link>
+          <Link href="/" className={styles.error__link}>
+            Return to the Homepage
+          </Link>
         </div>
       </div>
     </>
-  );
+  )
 }
