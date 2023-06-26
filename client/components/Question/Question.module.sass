@@ -3,6 +3,7 @@
 @mixin icon 
   flex-shrink: 0
   background-size: cover
+  background: url('/icons/faq_icon_closed.png') no-repeat center
   width: 2rem
   height: 2rem
 
@@ -18,15 +19,17 @@
     font-size: 1.5rem
     font-weight: 600
     line-height: 2rem
+    &:hover
+      text-decoration: underline
+      cursor: pointer
   &__answer
     font-weight: 400
     font-size: 1rem
     line-height: 1.5rem
     padding-top: 1rem
   &__icon
-    background: url('/icons/faq_icon_closed.png') no-repeat center
     @include icon
     &_open
-      background: url('/icons/faq_icon_open.png') no-repeat center
       @include icon
+      transform: rotate(180deg) 
     
