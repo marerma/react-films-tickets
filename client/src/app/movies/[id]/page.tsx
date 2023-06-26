@@ -1,6 +1,5 @@
-import { Metadata, ResolvingMetadata } from 'next'
+import { Metadata } from 'next'
 import { FilmCard, ReviewsList } from 'components'
-import styles from './Movie.module.sass'
 import { BASE_URL } from 'shared/app-congif'
 
 export const metadata: Metadata = {
@@ -28,9 +27,9 @@ export async function generateMetadata({
 
 export default function Movie({ params }: { params: { id: string } }) {
   return (
-    <div className={styles.film__page}>
+    <>
       <FilmCard id={params.id} />
       <ReviewsList id={params.id} />
-    </div>
+    </>
   )
 }
