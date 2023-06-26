@@ -1,3 +1,5 @@
+@import 'src/app/styles/_mixin'
+
 .cart
   display: flex
   align-items: center
@@ -27,12 +29,11 @@
   &__textWrapper
     display: flex
     justify-content: space-between
+    @include cardWrapper
   &__total, &__text
     font-size: 1.25rem
     line-height: 1.25rem
     font-weight: 600
-    padding-top: 1rem
-    padding-right: 1rem
     text-align: left
     margin-top: auto
     &_empty
