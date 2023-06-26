@@ -1,47 +1,30 @@
 'use client'
 
+import {  useMemo } from 'react'
 import { useAppSelector } from 'store/hooks'
-import { FilmsInCartSelector, TotalAmount } from 'store/selector/Selectors'
-import { useMemo } from 'react'
+import { selectFilmsInCart } from 'store/selector/Selectors'
 import { useGetAllFilmsQuery } from 'store/reducer/FilmsApiSlice'
-import { Films } from 'components'
+import { FilmsList, CartTotal } from 'components'
 import styles from './Cart.module.sass'
-import { CART_RANGE } from 'shared/app-congif'
+
+const emptyArray: Movie[] = [];
 
 const CartContent = () => {
-  const filmsInCart = useAppSelector(FilmsInCartSelector)
-  const totalAmount = useAppSelector(TotalAmount)
-  const { data } = useGetAllFilmsQuery()
+  const filmsInCart = useAppSelector(selectFilmsInCart);
+  const filmsInCartIds = useMemo(() => filmsInCart.map((el) => el.id), [filmsInCart]);
 
-  const selectedFilms = useMemo(() => {
-    if (filmsInCart && data) {
-      const ids = filmsInCart.map((el) => el.id)
-      return data.filter((film) => ids.includes(film.id))
-    }
-  }, [data, filmsInCart])
+  const { movies } = useGetAllFilmsQuery(undefined, {
+    selectFromResult: ({ data }) => ({
+      movies: data?.filter((film) => filmsInCartIds.includes(film.id)) ?? emptyArray,
+    }),
+  })
 
   return (
     <div className={styles.cart__wrapper}>
-      {selectedFilms && <Films.List allFilms={selectedFilms} isRemovable />}
-      <div
-        className={
-          totalAmount === CART_RANGE.min
-            ? styles.cart__total_empty
-            : styles.cart__total
-        }
-      >
-        {' '}
-        {totalAmount === CART_RANGE.min ? (
-          <span className={styles.cart__text}>В корзине нет билетов</span>
-        ) : (
-          <div className={styles.cart__textWrapper}>
-            <span className={styles.cart__text}>Итого билетов:</span>
-            <span className={styles.cart__text}>{totalAmount}</span>
-          </div>
-        )}
-      </div>
+      <FilmsList allFilms={movies} isRemovable />
+      <CartTotal />
     </div>
   )
 }
 
-export default CartContent
+export default CartContent;

@@ -1,9 +1,9 @@
 import { useAppSelector } from 'store/hooks'
 import styles from './Cart.module.sass'
-import { TotalAmount } from 'store/selector/Selectors'
+import { selectTotalCartAmount } from 'store/selector/Selectors'
 
 const Cart = () => {
-  const totalAmount = useAppSelector(TotalAmount)
+  const totalAmount = useAppSelector(selectTotalCartAmount)
 
   return (
     <div className={styles.cart}>
