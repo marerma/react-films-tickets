@@ -2,12 +2,12 @@ import { useMemo } from "react";
 import { filterFilms } from "shared/utils/getFilteredData";
 import { useAppSelector } from "store/hooks";
 import { useGetAllFilmsQuery, filmsApi } from "store/reducer/FilmsApiSlice";
-import { IsActiveFilter, ActiveFilters } from "store/selector/Selectors";
+import { IsActiveFilter, selectActiveFilters } from "store/selector/Selectors";
 
 const useFilteredFilms = () => {
   const { data: allFilms, isLoading, isError } = useGetAllFilmsQuery();
   const isActiveFilter = useAppSelector(IsActiveFilter);
-  const filters = useAppSelector(ActiveFilters);
+  const filters = useAppSelector(selectActiveFilters);
   const {data: filmsInCinema, isSuccess: filmsInCinemaFetched, isLoading: filmsInCinemaLoading, isFetching: filmsInCinemaFetching} = filmsApi.endpoints.getCinemaFilms.useQueryState(filters.cinema);
 
   const filteredFilms = useMemo(() => {    
