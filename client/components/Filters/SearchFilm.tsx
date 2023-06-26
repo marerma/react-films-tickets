@@ -41,7 +41,7 @@ const Search = ({ filterType }: SearchProps) => {
       </label>
       <input
         id="titleSearch"
-        type="text"
+        type="search"
         value={searchValue}
         placeholder="Введите название"
         className={styles.input__searchInput}

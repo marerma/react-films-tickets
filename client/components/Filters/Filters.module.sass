@@ -34,6 +34,12 @@
     padding: 10px 1rem
     font-size: 0.875rem
     outline: none
+    &::-webkit-search-cancel-button
+      position: relative
+      -webkit-appearance: none
+      height: 0.5rem
+      width: 0.5rem
+      background: url('/icons/close_icon.svg') no-repeat center
     &::placeholder
       color: var(--text-tertiary)
     &:focus
