@@ -10,7 +10,7 @@ type FilmCardProps = {
 }
 
 const FilmCard = (props: FilmCardProps) => {
-  const { data: film, isLoading, isError } = useGetOneFilmQuery(props.id)
+  const { data: film } = useGetOneFilmQuery(props.id)
 
   if (film) {
     const {
@@ -26,13 +26,15 @@ const FilmCard = (props: FilmCardProps) => {
 
     return (
       <div className={styles.film__wrapper}>
-        <Image
-          src={posterUrl}
-          alt={`poster of ${title}`}
-          width={400}
-          height={500}
-          className={styles.film__poster}
-        />
+        <div className={styles.film__poster}>
+          <Image
+            src={posterUrl}
+            alt={`poster of ${title}`}
+            fill={true}
+            sizes='400px'
+            priority
+          />
+        </div>
         <div className={styles.film__infoContainer}>
           <div className={styles.film__info}>
             <h3 className={styles.film__title}>{title}</h3>
