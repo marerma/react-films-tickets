@@ -3,6 +3,7 @@ import debounce from 'lodash.debounce'
 import { useState, useMemo, useEffect } from 'react'
 import { useAppDispatch } from 'store/hooks'
 import { addFilter, resetFilters } from 'store/reducer/FiltersSlice'
+import { DEBOUNCE_DELAY } from 'shared/app-congif'
 import styles from './Filters.module.sass'
 
 type SearchProps = {
@@ -17,7 +18,7 @@ const Search = ({ filterType }: SearchProps) => {
       debounce(
         (event: React.ChangeEvent<HTMLInputElement>, searchValue: string) => {
           dispatch(addFilter({ type: filterType, value: searchValue }))
-        }
+        }, DEBOUNCE_DELAY
       ),
     [dispatch, filterType]
   )
